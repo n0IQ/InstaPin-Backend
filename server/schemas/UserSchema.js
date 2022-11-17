@@ -10,7 +10,8 @@ const UserType = new GraphQLObjectType({
   fields: () => {
     return({
       id: { type: GraphQLID },
-      name: { type: GraphQLString },
+      firstName: { type: GraphQLString },
+      lastName: { type: GraphQLString },
       userName: { type: GraphQLString },
       createdPins: { type: new GraphQLList(PinType) },
       savedPins: { type: new GraphQLList(PinType) },

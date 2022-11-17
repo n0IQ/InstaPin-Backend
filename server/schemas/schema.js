@@ -58,14 +58,16 @@ const Mutation = new GraphQLObjectType({
     createUser: {
       type: UserType,
       args: {
-        name: { type: new GraphQLNonNull(GraphQLString) },
+        firstName: { type: new GraphQLNonNull(GraphQLString) },
+        lastName: { type : new GraphQLNonNull(GraphQLString) },
         userName: { type: new GraphQLNonNull(GraphQLString) },
         email: { type: new GraphQLNonNull(GraphQLString) },
         password: { type: new GraphQLNonNull(GraphQLString) },
       },
       resolve(parent, args) {
         return User.create({
-          name: args.name,
+          firstName: args.firstName,
+          lastName: args.lastName,
           userName: args.userName,
           email: args.email,
           password: args.password,
@@ -96,7 +98,7 @@ const Mutation = new GraphQLObjectType({
         imageUrl: { type: new GraphQLNonNull(GraphQLString) },
         description: { type: GraphQLString },
         link: { type: GraphQLString },
-        userId: { type: new GraphQLNonNull(GraphQLID) },
+        userName: { type: new GraphQLNonNull(GraphQLString) },
       },
       resolve(parent, args) {
         return Pin.create({
@@ -104,7 +106,7 @@ const Mutation = new GraphQLObjectType({
           imageUrl: args.imageUrl,
           description: args.description,
           link: args.link,
-          userId: args.userId,
+          userName: args.userName,
         });
       },
     },

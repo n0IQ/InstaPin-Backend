@@ -16,8 +16,8 @@ const pinSchema = new mongoose.Schema({
   link: {
     type: String,
   },
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
+  userName: {
+    type: String,
     required: true,
   },
   createdAt: {
