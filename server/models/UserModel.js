@@ -27,10 +27,10 @@ const userSchema = new mongoose.Schema({
     unique: false,
   },
   createdPins: {
-    type: [mongoose.Schema.Types.ObjectId],
+    type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Pin' }],
   },
   savedPins: {
-    type: [mongoose.Schema.Types.ObjectId],
+    type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Pin' }],
   },
   createdAt: { 
     type: Date,
