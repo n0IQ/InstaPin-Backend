@@ -23,8 +23,13 @@ const pinSchema = new mongoose.Schema({
   },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
     required: [true, 'User ID is Required'],
     unique: false,
+  },
+  savedBy: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: 'User',
   },
   createdAt: {
     type: Date,
