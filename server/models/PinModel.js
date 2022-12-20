@@ -9,16 +9,22 @@ const pinSchema = new mongoose.Schema({
   imageUrl: {
     type: String,
     required: [true, 'Image URL is Required'],
+    unique: false,
   },
   description: {
     type: String,
+    required: false,
+    unique: false,
   },
   link: {
     type: String,
+    required: false,
+    unique: false,
   },
-  userName: {
-    type: String,
-    required: true,
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: [true, 'User ID is Required'],
+    unique: false,
   },
   createdAt: {
     type: Date,
