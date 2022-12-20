@@ -4,9 +4,12 @@ const userSchema = new mongoose.Schema({
   firstName: {
     type: String,
     required: [true, 'First Name is Required'],
+    unique: false,
   },
   lastName: {
     type: String,
+    required: false,
+    unique: false,
   },
   userName: {
     type: String,
@@ -21,6 +24,7 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: [true, 'Password is Required'],
+    unique: false,
   },
   createdPins: {
     type: [mongoose.Schema.Types.ObjectId],
@@ -28,6 +32,10 @@ const userSchema = new mongoose.Schema({
   savedPins: {
     type: [mongoose.Schema.Types.ObjectId],
   },
+  createdAt: { 
+    type: Date,
+    default: Date.now(),
+  }
 });
 
 const User = mongoose.model('User', userSchema);
