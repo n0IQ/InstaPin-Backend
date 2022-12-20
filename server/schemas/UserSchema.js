@@ -5,6 +5,8 @@ const {
   GraphQLList,
 } = require('graphql');
 
+const Pin = require('../models/PinModel');
+
 const UserType = new GraphQLObjectType({
   name: 'User',
   fields: ()=> ({
@@ -14,14 +16,14 @@ const UserType = new GraphQLObjectType({
       userName: { type: GraphQLString },
       createdPins: {
         type: new GraphQLList(PinType),
-        resolve(parent, args) {
-          return Pin.find({ userId: parent.id });
+        async resolve(parent, args) {
+          return await Pin.find({ userId : parent.id});
         }
       },
       savedPins: {
         type: new GraphQLList(PinType),
-        resolve(parent, args) {
-          return Pin.find({ savedBy: parent.id });
+        async resolve(parent, args) {
+          return await Pin.find({ savedBy: parent.id });
         }
       },
   }),
