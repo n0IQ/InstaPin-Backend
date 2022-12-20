@@ -12,7 +12,7 @@ const PinType = new GraphQLObjectType({
     user: {
       type: UserType,
       resolve(parent, args) {
-        return User.find({userName: parent.userName});
+        return User.findById(parent.userId);
       },
     },
   }),
