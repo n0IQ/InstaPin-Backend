@@ -9,6 +9,7 @@ const app = express();
 
 app.use(cors());
 
+// Connect Database
 const DB = process.env.DATABASE.replace(
   '<PASSWORD>',
   process.env.DATABASE_PASSWORD
@@ -24,7 +25,7 @@ app.use(
   '/graphql',
   graphqlHTTP({
     schema,
-    graphiql: true,
+    graphiql: process.env.NODE_ENV === 'development'
   })
 );
 
