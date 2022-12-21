@@ -3,8 +3,9 @@
 
 ## Description:
 
-This project was made in as a way to practice my GraphQL skills.
-I also used it to learn how to implement an ORM into my
+This project is a clone of a very popular image sharing and social 
+media service Pinterest. I build this project as a way to practice 
+my GraphQL skills. I also used it to learn how to implement an ORM into my
 back-end, which in this case I used Sequelize. It replicats the
 famous column layout that Pinteres uses, and it exemplifies
 several small features present in the real website. I made a
