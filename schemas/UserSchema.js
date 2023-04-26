@@ -9,23 +9,25 @@ const Pin = require('../models/PinModel');
 
 const UserType = new GraphQLObjectType({
   name: 'User',
-  fields: ()=> ({
-      id: { type: GraphQLID },
-      firstName: { type: GraphQLString },
-      lastName: { type: GraphQLString },
-      userName: { type: GraphQLString },
-      createdPins: {
-        type: new GraphQLList(PinType),
-        async resolve(parent, args) {
-          return await Pin.find({ userId : parent.id});
-        }
+  fields: () => ({
+    id: { type: GraphQLID },
+    firstName: { type: GraphQLString },
+    lastName: { type: GraphQLString },
+    email: { type: GraphQLString },
+    userName: { type: GraphQLString },
+    jwtToken: { type: GraphQLString },
+    createdPins: {
+      type: new GraphQLList(PinType),
+      async resolve(parent, args) {
+        return await Pin.find({ userId: parent.id });
       },
-      savedPins: {
-        type: new GraphQLList(PinType),
-        async resolve(parent, args) {
-          return await Pin.find({ savedBy: parent.id });
-        }
+    },
+    savedPins: {
+      type: new GraphQLList(PinType),
+      async resolve(parent, args) {
+        return await Pin.find({ savedBy: parent.id });
       },
+    },
   }),
 });
 

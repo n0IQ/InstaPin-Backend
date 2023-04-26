@@ -1,19 +1,23 @@
 {
-  "name": "pinterest-clone",
+  "name": "instapin",
   "version": "1.0.0",
-  "description": "pinterest clone made using GraphQL API",
+  "description": "A web app to post pictures and pins, made using GraphQL API",
   "main": "index.js",
   "scripts": {
     "start": "nodemon server/index.js"
   },
   "author": "Mohit Varma",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cloudinary": "^1.35.0",
     "cors": "^2.8.5",
     "express": "^4.18.1",
     "express-graphql": "^0.12.0",
     "graphql": "^16.5.0",
-    "mongoose": "^6.8.1"
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.8.1",
+    "validator": "^13.9.0"
   },
   "devDependencies": {
     "dotenv": "^16.0.1",

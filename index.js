@@ -7,6 +7,7 @@ const schema = require('./schemas/schema');
 
 const app = express();
 
+// Global MiddleWares
 app.use(cors());
 
 // Connect Database
@@ -15,17 +16,24 @@ const DB = process.env.DATABASE.replace(
   process.env.DATABASE_PASSWORD
 );
 
-mongoose.connect(DB, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose
+  .connect(DB, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log('Database Connected Successfully');
+  })
+  .catch((err) => {
+    console.log('Database Error', err);
+  });
 
 // GraphQL API Endpoint
 app.use(
   '/graphql',
   graphqlHTTP({
     schema,
-    graphiql: process.env.NODE_ENV === 'development'
+    graphiql: process.env.NODE_ENV === 'development',
   })
 );
 

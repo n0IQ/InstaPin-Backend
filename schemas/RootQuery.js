@@ -12,11 +12,7 @@ const Pin = require('../models/PinModel');
 const UserType = require('./UserSchema');
 const PinType = require('./PinSchema');
 
-const {
-  userExists,
-  pinExists,
-  validId
-} = require('../utils/validate');
+const { userExists, pinExists, validId } = require('../utils/validate');
 
 const RootQuery = new GraphQLObjectType({
   name: 'RootQuery',
@@ -32,7 +28,7 @@ const RootQuery = new GraphQLObjectType({
     user: {
       type: UserType,
       args: {
-        id: { type: new GraphQLNonNull(GraphQLID) }
+        id: { type: new GraphQLNonNull(GraphQLID) },
       },
       async resolve(parent, args) {
         // check if id is valid
@@ -41,7 +37,7 @@ const RootQuery = new GraphQLObjectType({
         // check if user exists
         const user = await userExists(args.id);
         if (!user) {
-          throw new GraphQLError("User does not exist");
+          throw new GraphQLError('User does not exist');
         }
 
         return User.findById(args.id);
@@ -58,7 +54,7 @@ const RootQuery = new GraphQLObjectType({
     pin: {
       type: PinType,
       args: {
-        id: { type: new GraphQLNonNull(GraphQLID) }
+        id: { type: new GraphQLNonNull(GraphQLID) },
       },
       async resolve(parent, args) {
         // check if id is valid
@@ -67,7 +63,7 @@ const RootQuery = new GraphQLObjectType({
         // check if pin exists
         const pin = await pinExists(args.id);
         if (!pin) {
-          throw new GraphQLError("Pin does not exist");
+          throw new GraphQLError('Pin does not exist');
         }
 
         return pin;
