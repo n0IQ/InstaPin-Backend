@@ -37,6 +37,10 @@ app.use(
   })
 );
 
+app.get('/', (req, res) => {
+  res.send('Server is up and working');
+});
+
 // Start Server
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
