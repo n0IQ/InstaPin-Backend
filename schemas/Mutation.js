@@ -4,6 +4,7 @@ const {
   GraphQLNonNull,
   GraphQLString,
   GraphQLError,
+  GraphQLList,
 } = require('graphql');
 
 const jwt = require('jsonwebtoken');
@@ -268,6 +269,27 @@ const Mutation = new GraphQLObjectType({
         return pin;
       },
     },
+    // Save Pin
+    savePin: {
+      type: PinType,
+      args: {
+        pinId: {
+          type: new GraphQLNonNull(GraphQLID),
+        },
+        userId: {
+          type: new GraphQLNonNull(GraphQLID),
+        },
+      },
+      async resolve(parent, args) {
+        await User.findByIdAndUpdate(args.userId, {
+          $addToSet: { savedPins: args.pinId },
+        });
+
+        return await Pin.findByIdAndUpdate(args.pinId, {
+          $addToSet: { savedBy: args.userId },
+        });
+      },
+    },
     // Update a Pin
     updatePin: {
       type: PinType,
@@ -328,6 +350,27 @@ const Mutation = new GraphQLObjectType({
             new: true,
           }
         );
+      },
+    },
+    // Remove Pins from Saved Pins
+    removePin: {
+      type: PinType,
+      args: {
+        pinId: {
+          type: new GraphQLNonNull(GraphQLID),
+        },
+        userId: {
+          type: new GraphQLNonNull(GraphQLID),
+        },
+      },
+      async resolve(parent, args) {
+        await User.findByIdAndUpdate(args.userId, {
+          $pull: { savedPins: args.pinId },
+        });
+
+        return await Pin.findByIdAndUpdate(args.pinId, {
+          $pull: { savedBy: args.userId },
+        });
       },
     },
     // Delete a Pin
