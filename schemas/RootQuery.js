@@ -50,6 +50,26 @@ const RootQuery = new GraphQLObjectType({
         return Pin.find();
       },
     },
+    // Get All Pins of a Single User
+    myPins: {
+      type: new GraphQLList(PinType),
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+      },
+      async resolve(parent, args) {
+        return await Pin.find({ userId: args.id });
+      },
+    },
+    // Get all Saved Pins
+    savedPins: {
+      type: new GraphQLList(PinType),
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLID) },
+      },
+      async resolve(parent, args) {
+        return await Pin.find({ savedBy: { $in: [args.id] } });
+      },
+    },
     // Get a Single Pin
     pin: {
       type: PinType,
