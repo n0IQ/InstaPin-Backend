@@ -3,7 +3,7 @@
   "builds": [
     {
       "src": "index.js",
-      "use": "@now/yarn"
+      "use": "@now/node"
     }
   ],
   "routes": [
