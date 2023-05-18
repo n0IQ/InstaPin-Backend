@@ -377,7 +377,7 @@ const Mutation = new GraphQLObjectType({
     deletePin: {
       type: PinType,
       args: {
-        id: {
+        pinId: {
           type: new GraphQLNonNull(GraphQLID),
         },
         userId: {
@@ -386,7 +386,7 @@ const Mutation = new GraphQLObjectType({
       },
       async resolve(parent, args) {
         // check if Id is valid
-        if (!validId(args.id)) throw new GraphQLError('Invalid Pin ID');
+        if (!validId(args.pinId)) throw new GraphQLError('Invalid Pin ID');
         else if (!validId(args.userId))
           throw new GraphQLError('Invalid User ID');
 
@@ -397,7 +397,7 @@ const Mutation = new GraphQLObjectType({
         }
 
         // check if the pin exists
-        const pin = await pinExists(args.id);
+        const pin = await pinExists(args.pinId);
         if (!pin) {
           throw new GraphQLError('Pin does not exist');
         }
@@ -410,24 +410,24 @@ const Mutation = new GraphQLObjectType({
         // remove this pin from the createdPins of the user
         await User.findByIdAndUpdate(args.userId, {
           $pull: {
-            createdPins: args.id,
+            createdPins: args.pinId,
           },
         });
 
         // remove this pin from the savedPins of the users
         await User.updateMany(
           {
-            savedPins: args.id,
+            savedPins: args.pinId,
           },
           {
             $pull: {
-              savedPins: args.id,
+              savedPins: args.pinId,
             },
           }
         );
 
         // delete this pin
-        return Pin.findByIdAndDelete(args.id);
+        return Pin.findByIdAndDelete(args.pinId);
       },
     },
   },
