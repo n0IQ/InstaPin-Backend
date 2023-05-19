@@ -1,41 +1,58 @@
-# Pinterest Clone - GraphQL, NodeJS, ExpressJS, MongoDB
+# InstaPin- An Image Sharing Platform
 
-## Description:
+Welcome to InstaPin, my Image Sharing Platform project! This platform is designed to allow users to share and discover images, create pins, and link them to websites. Users can log in, upload images, provide short descriptions, and save pins from other users.
 
-This project is a clone of a very popular image-sharing and social
-media service - Pinterest. I built this project as a way to practice
-my GraphQL skills and also used it to learn how to implement an ODM
-into my backend, which in this case, I used Mongoose. It replicates
-the famous Pinterest as well as exemplifies several small features present
-in the original website. I made a GraphQL API for my backend. The user
-can register on the platform, and all info related to the user gets stored
-in a NoSQL MongoDB database. If the user wants to upload a pin, the image
-(and other details) gets inserted into the database.
+## Tech Stack
 
-## Technologies Used:
+The project is built using the following technologies:
 
-- JavaScript
-- NodeJS
-- ExpressJS
-- GraphQL
-- MongoDB
-- Mongoose ODM
+- **React**
+- **Node.js**
+- **JavaScript**
+- **MongoDB**
+- **Express**
+- **GraphQL**
 
-### Back End
+## Features
 
-This repository is for the backend.
+The image sharing platform offers the following features:
 
-## Design:
+- **User Authentication**: Users can sign up and log in to the platform to access their accounts and perform actions.
+- **Pin Creation**: Users can create pins by uploading images and optionally providing a short description.
+- **Linking to Websites**: Users can link their pins to external websites to provide additional information.
+- **Pin Saving**: Users can save pins created by other users to their profile for later reference.
 
-### Database:
+## Installation
 
-2 Models:
+To run the project locally, please follow these steps:
 
-- Users: Stores all users registered on the platform. Information for each user includes the user's first and last name, username, email, password, IDs of the pins created by the user, and IDs of the pins saved by the user.
-- Pins: Stores all pins uploaded to the platform. Information for each pin includes the image URL, userId of the user that uploaded, the userId of the users that have saved this pin, a title, a description, and an optional URL.
+1. Clone the repository to your local machine:
 
-### Server-Side:
+   ```bash
+   git clone https://github.com/n0IQ/InstaPin-Backend.git
+   ```
 
-- Express server with a graphql enpoint:
-  - Mutations and queries are handled.
-  - Mongoose ODM is used for database requests.
+2. Install the dependencies for backend:
+
+   ```bash
+   npm install
+   ```
+
+3. Set up the environment variables:
+   Create an .env file in the directory and update the necessary values, such as database connection details and API keys.
+
+4. Start the development server:
+   ```
+   npm start
+   ```
+5. Open your web browser and access the backend application at http://localhost:5000/graphql.
+
+## API Documentation
+
+The API documentation for the backend GraphQl queries and mutations for InstaPin can be found in the graphiql docs directory. It provides details on the available GraphQL queries and mutations, along with their input and output structures.
+
+## Project Images
+
+![InstaPin Dashboard](./images/dashboard.png)
+![A single Pin Information](./images/pin.png)
+![Add or Create a Pin](./images/addPin.png)
