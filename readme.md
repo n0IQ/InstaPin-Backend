@@ -53,6 +53,14 @@ The API documentation for the backend GraphQl queries and mutations for InstaPin
 
 ## Project Images
 
+# Dashboard
+
 ![InstaPin Dashboard](./images/dashboard.png)
+
+# Pin Information
+
 ![A single Pin Information](./images/pin.png)
+
+# Create a Pin
+
 ![Add or Create a Pin](./images/addPin.png)
