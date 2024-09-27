@@ -1,5 +1,5 @@
 const express = require('express');
-const { graphqlHTTP } = require('express-graphql');
+const { createHandler } = require('graphql-http/lib/use/express');
 const cors = require('cors');
 require('dotenv').config();
 const mongoose = require('mongoose');
@@ -29,13 +29,7 @@ mongoose
   });
 
 // GraphQL API Endpoint
-app.use(
-  '/graphql',
-  graphqlHTTP({
-    schema,
-    graphiql: process.env.NODE_ENV === 'development',
-  })
-);
+app.all('/graphql', createHandler({ schema }));
 
 app.get('/', (req, res) => {
   res.send('Server is up and working');
